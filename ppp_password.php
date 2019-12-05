@@ -90,7 +90,7 @@ function ppp_passwd_insert_field() {
 	echo 'パスワード： <input type="text" name="ppp_passwd" value="'.get_post_meta($post->ID, 'ppp_passwd', true).'" style="100%" />';
 }
 
-// カスタムフィsave_cd_fieldsールドの値を保存
+// カスタムフィールド save_cd_fields の値を保存
 function ppp_passwd_save_field ( $post_id ) {
 	if(!empty($_POST['ppp_passwd'])){
 		update_post_meta($post_id, 'ppp_passwd', $_POST['ppp_passwd'] );
