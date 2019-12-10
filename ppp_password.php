@@ -2,7 +2,7 @@
 /**
  * Plugin name: PPP PassWord
  * Description: Pablic Post Previewで投稿表示時にパスワード認証を行う
- * Version: 0.1.0
+ * Version: 0.1.1
  *
  * @package ppp_password
  * @author kutsu
@@ -18,6 +18,20 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); //plugin.phpを読み�
 if ( !is_plugin_active( 'public-post-preview/public-post-preview.php' ) ) {
 	//エラー
 }
+
+// PPPが有効化されていないときにアラートを出す。
+function ppp_pwd_admin_notices() {
+?>
+<?php if ( !is_plugin_active( 'public-post-preview/public-post-preview.php' ) ) : ?>
+	<div class="error">
+		<ul>
+			<li>プラグイン『PPP PassWord』を利用するには<a href="https://ja.wordpress.org/plugins/public-post-preview/" target="_blank" rel="noopener">Public Post Preview</a>が有効化されている必要があります。もしインストールされていない場合は<a href="https://ja.wordpress.org/plugins/public-post-preview/" target="_blank" rel="noopener">Public Post Preview</a>からインストールしてください。</li>
+		</ul>
+	</div>
+<?php endif; ?>
+<?php
+}
+add_action( 'admin_notices', 'ppp_pwd_admin_notices' );
 
 //投稿で保存されたパスワードと入力されたパスワードが等しいか判断
 add_action(
